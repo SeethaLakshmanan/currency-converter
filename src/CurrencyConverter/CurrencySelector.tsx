@@ -1,0 +1,53 @@
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import InformationIcon from "@mui/icons-material/InfoOutlined";
+import { Currency } from "../models/currency";
+
+interface CurrencySelectorProps {
+  currencies: Currency[];
+  selectedCurrency: string;
+  onCurrencyChange: (value: string) => void;
+}
+
+const CurrencySelector = ({
+  currencies,
+  selectedCurrency,
+  onCurrencyChange,
+}: CurrencySelectorProps): JSX.Element => {
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    onCurrencyChange(event.target.value);
+  };
+
+  return (
+    <FormControl>
+      <InputLabel>Select a currency</InputLabel>
+      <Select
+        value={selectedCurrency}
+        onChange={handleChange}
+        sx={{ backgroundColor: "white" }}
+        renderValue={(selected) => <Typography>{selected}</Typography>}
+      >
+        {currencies.map(({ key, value }) => (
+          <MenuItem key={key} value={key}>
+            <Typography>{key}</Typography>
+            <Tooltip title={value} placement="bottom" arrow>
+              <IconButton sx={{ color: "#4fc4a2" }}>
+                <InformationIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
+};
+
+export default CurrencySelector;
