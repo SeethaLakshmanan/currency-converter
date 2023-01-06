@@ -3,12 +3,12 @@ import { ChangeEvent } from "react";
 
 interface AmountProps {
   amount: number;
-  handleAmountChange: (value: number) => void;
+  handleAmountChange: (value: string) => void;
 }
 
 const Amount = ({ amount, handleAmountChange }: AmountProps): JSX.Element => {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    handleAmountChange(parseFloat(event.target.value));
+    handleAmountChange(event.target.value);
   };
 
   return (
