@@ -32,8 +32,12 @@ const CurrencyConverter = (): JSX.Element => {
     getCurrencies();
   }, []);
 
-  const handleAmountChange = (value: number) => {
-    setAmount(value);
+  const restrictTo2DecimalPlaces = (value: string): number => {
+    return parseFloat((Math.round(parseFloat(value) * 100) / 100).toFixed(2));
+  };
+
+  const handleAmountChange = (value: string) => {
+    setAmount(restrictTo2DecimalPlaces(value));
   };
 
   const handleConvertClick = async () => {
@@ -61,7 +65,9 @@ const CurrencyConverter = (): JSX.Element => {
 
   const getResult = () => {
     return result !== 0
-      ? `${fromCurrency} ${amount} in ${toCurrency} is ${result}`
+      ? `${fromCurrency} ${amount} in ${toCurrency} is ${restrictTo2DecimalPlaces(
+          result.toString()
+        )}`
       : result;
   };
 
