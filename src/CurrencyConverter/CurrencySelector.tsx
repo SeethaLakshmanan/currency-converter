@@ -30,16 +30,17 @@ const CurrencySelector = ({
     <FormControl>
       <InputLabel>Select a currency</InputLabel>
       <Select
+        label="Select a currency"
         value={selectedCurrency}
         onChange={handleChange}
-        sx={{ backgroundColor: "white" }}
+        sx={{ backgroundColor: "white", textAlign: "center" }}
         renderValue={(selected) => <Typography>{selected}</Typography>}
       >
         {currencies.map(({ key, value }) => (
           <MenuItem key={key} value={key}>
             <Typography>{key}</Typography>
             <Tooltip title={value} placement="bottom" arrow>
-              <IconButton sx={{ color: "#4fc4a2" }}>
+              <IconButton sx={{ color: "black" }}>
                 <InformationIcon fontSize="small" />
               </IconButton>
             </Tooltip>

@@ -13,12 +13,13 @@ const Amount = ({ amount, handleAmountChange }: AmountProps): JSX.Element => {
 
   return (
     <>
-      <Typography sx={{ color: "white", textAlign: "start" }}>
-        Amount to convert:
-      </Typography>
+      <Typography>Amount to convert</Typography>
       <TextField
         type="Number"
-        sx={{ backgroundColor: "white" }}
+        inputProps={{
+          min: 0,
+          style: { textAlign: "center", backgroundColor: "white" },
+        }}
         value={amount}
         onChange={handleInputChange}
       />
